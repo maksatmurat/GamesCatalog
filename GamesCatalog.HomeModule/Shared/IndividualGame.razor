@@ -6,18 +6,12 @@
         <td>@Game?.Name</td>
         <td>@Game?.Genre</td>
         <td>@Game?.ReleaseDate.ToString("dd.MM.yyyy")</td>
-        @if (DisplayButton)
-        {
-            <td>
-
-                <button class="btn btn-danger" @onclick="Delete">Delete</button>
-                @if (message != null)
-                {
-                    <span class="text-danger">@message</span>
-                    message = null;
-                }
-            </td>
-        }
+        <td>
+            @if (DisplayButton)
+            {
+                <button class="btn btn-danger" @onclick="(()=>DeleteGame.InvokeAsync(Game))">Delete</button>
+            }
+        </td>
     </tr>
 }
 else
@@ -30,19 +24,13 @@ else
         </div>
     </div>
     <div class="row">
+        <div class="col">
+
         @if (DisplayButton)
         {
-            <div class="col">
-                <button class="btn btn-danger" @onclick="Delete">Delete</button>
-            </div>
-            <div>
-                @if (message != null)
-                {
-                    <span class="text-danger">@message</span>
-                    message = null;
-                }
-            </div>
+            <button class="btn btn-danger" @onclick="SwitchGame">Switch</button>
         }
+        </div>
     </div>
 }
 
@@ -51,9 +39,6 @@ else
     [Parameter] public Game? Game { get; set; }
     [Parameter] public bool IsTable { get; set; }
     [Parameter] public bool DisplayButton { get; set; } = false;
-    string? message;
-    void Delete()
-    {
-        message = $"Game {Game?.Name} deleted!";
-    }
+    [Parameter] public EventCallback<Game> DeleteGame { get; set; }
+    [Parameter] public EventCallback SwitchGame {get; set; }
 }

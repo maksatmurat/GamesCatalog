@@ -10,24 +10,24 @@
                 <th>Genre</th>
                 <th>Release Date</th>
                 <th>
-                    <input type="checkbox" name="show" @onchange="(()=>displayButton=!displayButton)" />
+                    <input type="checkbox" @bind="displayButton" />
                 </th>
             </tr>
         </thead>
         <tbody>
             @if (Games == null)
             {
-                <tr><td>Loading Data.....</td></tr>
+                <tr>@NullList</tr>
             }
             else if (Games.Count == 0)
             {
-                <tr><td>No Items in Array</td></tr>
+                <tr>@EmptyList</tr>
             }
             else
             {
                 @foreach (var item in Games)
                 {
-                    <IndividualGame DisplayButton="displayButton" Game="item" IsTable="true" />
+                    <IndividualGame DeleteGame="DeleteTheGame" DisplayButton="displayButton" Game="item" IsTable="true" />
                 }
             }
         </tbody>
@@ -38,5 +38,10 @@
     bool displayButton = false;
     [Parameter] public List<Game>? Games { get; set; }
     [Parameter] public string? Name { get; set; }
-
+    [Parameter] public RenderFragment? EmptyList { get; set; }
+    [Parameter] public RenderFragment? NullList { get; set; }
+    void DeleteTheGame(Game game)
+    {
+        Games?.Remove(game);
+    }
 }

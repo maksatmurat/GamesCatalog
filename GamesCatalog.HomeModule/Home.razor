@@ -1,4 +1,5 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 
 <PageTitle>@PageTitle</PageTitle>
 
@@ -14,37 +15,81 @@
     </div>
 </div>
 
-<GameListTable Games="games" Name="@PageTitle"/>
-<IndividualGame Game="games![0]" IsTable="false" DisplayButton="true" />
+<GameListTable Games="games" Name="@PageTitle" >
+    <NullList>
+        <td>
+            <span style="text-align:center; color:red;font-weight:bolder">
+                  Element Loading...
+            </span>
+        </td>
+    </NullList>
+    <EmptyList>
+        <td>
+            <span style="text-align:center; color:Blue;font-weight:bolder">
+                Empty List
+            </span>
+        </td>
+    </EmptyList>
+</GameListTable>
+
+@*<IndividualGame Game="oneGameToShow" SwitchGame="ShowNewGame" IsTable="false" DisplayButton="true" />*@
 
 @code
 {
     private string PageTitle = "Home";
-    List<Game>? games;
+    List<Game>? games=new List<Game>();
+    Random? rnd;
+    Game? oneGameToShow;
 
-    protected override void OnInitialized()
+
+
+
+    //protected override void OnInitialized()
+    //{
+    //    games = new List<Game>()
+    //    {
+    //        new Game()
+    //        {
+    //            Name="Farming Simulator 2025",
+    //            Genre="Simulator",
+    //            ReleaseDate = new DateTime(2025,05,08)
+    //        },
+    //        new Game()
+    //        {
+    //            Name="Gta VI",
+    //            Genre="Simulator,RPG",
+    //            ReleaseDate = new DateTime(2025,09,12)
+    //        },
+    //        new Game()
+    //        {
+    //            Name="Assasin Creed Next",
+    //            Genre="Fight",
+    //            ReleaseDate = new DateTime(2025,2,17)
+    //        }
+    //    };
+    //    rnd = new Random(DateTime.Now.Millisecond);
+    //    oneGameToShow = games[rnd.Next(0, games.Count)];
+
+
+    //}
+
+    void ShowNewGame()
     {
-        games = new List<Game>()
+        oneGameToShow = switchGame();
+    }
+    Game switchGame()
+    {
+        Game tempGame;
+        if (games!.Count >= 2)
         {
-            new Game()
-            {
-                Name="Farming Simulator 2025",
-                Genre="Simulator",
-                ReleaseDate = new DateTime(2025,05,08)
-            },
-            new Game()
-            {
-                Name="Gta VI",
-                Genre="Simulator,RPG",
-                ReleaseDate = new DateTime(2025,09,12)
-            },
-            new Game()
-            {
-                Name="Assasin Creed Next",
-                Genre="Fight",
-                ReleaseDate = new DateTime(2025,2,17)
-            }
-        };
+            int iteratator = rnd!.Next(0, games.Count);
+            tempGame = games[iteratator];
+        }
+        else if (games.Count == 1)
+            tempGame = games[0];
+        else
+            return new Game() { Name = "No items in array!", ReleaseDate = DateTime.Now };
 
+        return tempGame;
     }
 }

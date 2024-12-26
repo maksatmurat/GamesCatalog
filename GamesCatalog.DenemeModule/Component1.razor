@@ -1,19 +1,40 @@
-﻿@page "/deneme"
+﻿@rendermode InteractiveServer
+
+@page "/deneme"
 
 <div class="my-component">
     This component is defined in the <strong>GamesCatalog.DenemeModule</strong> library.
 </div>
-
-<GameListTable Name="Deneme Module" Games="games"/>
+<div class="row">
+    <div class="col-6 text-right">
+        <button @onclick="IncrementCount" class="btn btn-primary">
+            Click me!
+        </button>
+    </div>
+    <div class="col-6 text-right">
+        <div style="font-size:50px">@currentCount</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <input type="number" name="number"  @bind="currentCount" class="form-control-lg"  />
+    </div>
+</div>
+<GameListTable Name="Deneme Module" Games="games" />
 
 @code
 {
     List<Game>? games;
 
+    private int currentCount = 0;
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
     protected override void OnInitialized()
     {
         games = new List<Game>()
-        {
+    {
                 new Game()
                 {
                     Name="Test Rally",
