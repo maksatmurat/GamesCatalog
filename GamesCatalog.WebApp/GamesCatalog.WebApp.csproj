@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\GamesCatalog.Core\GamesCatalog.Core.csproj" />
     <ProjectReference Include="..\GamesCatalog.DenemeModule\GamesCatalog.DenemeModule.csproj" />
     <ProjectReference Include="..\GamesCatalog.HomeModule\GamesCatalog.HomeModule.csproj" />
   </ItemGroup>

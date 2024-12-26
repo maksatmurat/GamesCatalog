@@ -1,0 +1,59 @@
+@rendermode InteractiveServer
+
+@if (IsTable)
+{
+    <tr>
+        <td>@Game?.Name</td>
+        <td>@Game?.Genre</td>
+        <td>@Game?.ReleaseDate.ToString("dd.MM.yyyy")</td>
+        @if (DisplayButton)
+        {
+            <td>
+
+                <button class="btn btn-danger" @onclick="Delete">Delete</button>
+                @if (message != null)
+                {
+                    <span class="text-danger">@message</span>
+                    message = null;
+                }
+            </td>
+        }
+    </tr>
+}
+else
+{
+    <div class="row text-center alert-info">
+        <div class="col">
+            <p>@Game?.Name</p>
+            <p>@Game?.Genre</p>
+            <p>@Game?.ReleaseDate.ToString("dd.MM.yyyy")</p>
+        </div>
+    </div>
+    <div class="row">
+        @if (DisplayButton)
+        {
+            <div class="col">
+                <button class="btn btn-danger" @onclick="Delete">Delete</button>
+            </div>
+            <div>
+                @if (message != null)
+                {
+                    <span class="text-danger">@message</span>
+                    message = null;
+                }
+            </div>
+        }
+    </div>
+}
+
+@code
+{
+    [Parameter] public Game? Game { get; set; }
+    [Parameter] public bool IsTable { get; set; }
+    [Parameter] public bool DisplayButton { get; set; } = false;
+    string? message;
+    void Delete()
+    {
+        message = $"Game {Game?.Name} deleted!";
+    }
+}

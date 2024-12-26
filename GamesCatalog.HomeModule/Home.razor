@@ -1,10 +1,50 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
+<PageTitle>@PageTitle</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="row">
+    <div class="col text-center">
+        <h1>Welcome to out Games Catalog</h1>
+    </div>
+</div>
 
-Welcome to your new app.
+<div class="row">
+    <div class="col text-center">
+        <h1>Show all games in Mock Database:</h1>
+    </div>
+</div>
 
+<GameListTable Games="games" Name="@PageTitle"/>
+<IndividualGame Game="games![0]" IsTable="false" DisplayButton="true" />
 
-<h2>MAksat</h2>
+@code
+{
+    private string PageTitle = "Home";
+    List<Game>? games;
+
+    protected override void OnInitialized()
+    {
+        games = new List<Game>()
+        {
+            new Game()
+            {
+                Name="Farming Simulator 2025",
+                Genre="Simulator",
+                ReleaseDate = new DateTime(2025,05,08)
+            },
+            new Game()
+            {
+                Name="Gta VI",
+                Genre="Simulator,RPG",
+                ReleaseDate = new DateTime(2025,09,12)
+            },
+            new Game()
+            {
+                Name="Assasin Creed Next",
+                Genre="Fight",
+                ReleaseDate = new DateTime(2025,2,17)
+            }
+        };
+
+    }
+}
