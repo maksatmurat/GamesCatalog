@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Calabonga.Blazor.AppDefinitions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
+  </ItemGroup>
+  <Target Name="CopyDLLs" AfterTargets="Build">
+    <Message Text="Executing Copy Command Task" Importance="High" />
+
+    <PropertyGroup>
+      <PublishedCommandsDir>C:\Users\Maksat\source\repos\GamesCatalog\GamesCatalog.WebApp\Modules\</PublishedCommandsDir>
+    </PropertyGroup>
+
+    <Copy SourceFiles="$(TargetDir)$(ProjectName).dll;$(TargetDir)$(ProjectName).pdb" DestinationFolder="$(PublishedCommandsDir)" />
+    <Message Text="Command $(ProjectName) successfully copied" Importance="High" />
+  </Target>
+
+</Project>

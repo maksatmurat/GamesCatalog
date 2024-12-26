@@ -6,4 +6,17 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Calabonga.Blazor.AppDefinitions" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GamesCatalog.DenemeModule\GamesCatalog.DenemeModule.csproj" />
+    <ProjectReference Include="..\GamesCatalog.HomeModule\GamesCatalog.HomeModule.csproj" />
+  </ItemGroup>
+
 </Project>
