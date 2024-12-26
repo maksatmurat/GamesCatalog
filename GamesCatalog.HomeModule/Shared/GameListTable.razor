@@ -15,31 +15,23 @@
             </tr>
         </thead>
         <tbody>
-            @if (Games == null)
-            {
-                <tr>@NullList</tr>
-            }
-            else if (Games.Count == 0)
-            {
-                <tr>@EmptyList</tr>
-            }
-            else
-            {
-                @foreach (var item in Games)
-                {
-                    <IndividualGame DeleteGame="DeleteTheGame" DisplayButton="displayButton" Game="item" IsTable="true" />
-                }
-            }
+                <GenericList ListOfItems="Games" EmptyList="EmptyList1" NullList="NullList1">
+                    <ItemTemplate Context="game">
+                        <IndividualGame Game="game" IsTable="true" DisplayButton="displayButton" DeleteGame="DeleteTheGame" />
+                    </ItemTemplate>
+                </GenericList>
         </tbody>
     </table>
 </div>
 
 @code{
-    bool displayButton = false;
+    [Parameter] public RenderFragment? EmptyList1 { get; set; }
+    [Parameter] public RenderFragment? NullList1 { get; set; }
+
     [Parameter] public List<Game>? Games { get; set; }
+    bool displayButton = false;
     [Parameter] public string? Name { get; set; }
-    [Parameter] public RenderFragment? EmptyList { get; set; }
-    [Parameter] public RenderFragment? NullList { get; set; }
+
     void DeleteTheGame(Game game)
     {
         Games?.Remove(game);

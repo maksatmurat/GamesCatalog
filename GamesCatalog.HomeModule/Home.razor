@@ -16,62 +16,62 @@
 </div>
 
 <GameListTable Games="games" Name="@PageTitle" >
-    <NullList>
+    <NullList1>
         <td>
             <span style="text-align:center; color:red;font-weight:bolder">
                   Element Loading...
             </span>
         </td>
-    </NullList>
-    <EmptyList>
+    </NullList1>
+    <EmptyList1>
         <td>
             <span style="text-align:center; color:Blue;font-weight:bolder">
                 Empty List
             </span>
         </td>
-    </EmptyList>
+    </EmptyList1>
 </GameListTable>
 
-@*<IndividualGame Game="oneGameToShow" SwitchGame="ShowNewGame" IsTable="false" DisplayButton="true" />*@
+<IndividualGame Game="oneGameToShow" SwitchGame="ShowNewGame" IsTable="false" DisplayButton="true" />
 
 @code
 {
     private string PageTitle = "Home";
-    List<Game>? games=new List<Game>();
+    List<Game>? games;
     Random? rnd;
     Game? oneGameToShow;
 
 
 
 
-    //protected override void OnInitialized()
-    //{
-    //    games = new List<Game>()
-    //    {
-    //        new Game()
-    //        {
-    //            Name="Farming Simulator 2025",
-    //            Genre="Simulator",
-    //            ReleaseDate = new DateTime(2025,05,08)
-    //        },
-    //        new Game()
-    //        {
-    //            Name="Gta VI",
-    //            Genre="Simulator,RPG",
-    //            ReleaseDate = new DateTime(2025,09,12)
-    //        },
-    //        new Game()
-    //        {
-    //            Name="Assasin Creed Next",
-    //            Genre="Fight",
-    //            ReleaseDate = new DateTime(2025,2,17)
-    //        }
-    //    };
-    //    rnd = new Random(DateTime.Now.Millisecond);
-    //    oneGameToShow = games[rnd.Next(0, games.Count)];
+    protected async override Task OnInitializedAsync()
+    {
+        games = new List<Game>()
+        {
+            new Game()
+            {
+                Name="Farming Simulator 2025",
+                Genre="Simulator",
+                ReleaseDate = new DateTime(2025,05,08)
+            },
+            new Game()
+            {
+                Name="Gta VI",
+                Genre="Simulator,RPG",
+                ReleaseDate = new DateTime(2025,09,12)
+            },
+            new Game()
+            {
+                Name="Assasin Creed Next",
+                Genre="Fight",
+                ReleaseDate = new DateTime(2025,2,17)
+            }
+        };
+        rnd = new Random(DateTime.Now.Millisecond);
+        oneGameToShow = games[rnd.Next(0, games.Count)];
 
 
-    //}
+    }
 
     void ShowNewGame()
     {

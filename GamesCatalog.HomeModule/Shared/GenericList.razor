@@ -1,0 +1,44 @@
+@typeparam TItem
+
+    @if (ListOfItems == null)
+    {
+        @if (NullList != null)
+        {
+
+            <tr>
+                @NullList
+            </tr>
+        }
+        else
+        {
+            <h2>gelyar</h2>
+        }
+    }
+    else if (ListOfItems.Count == 0)
+    {
+        if (NullList != null)
+        {
+
+            <tr>@EmptyList</tr>
+        }
+        else
+        {
+
+            <h2>bos</h2>
+        }
+    }
+    else
+    {
+        @foreach (var item in ListOfItems)
+        {
+            @ItemTemplate!(item);
+        }
+    }
+
+@code{
+    [Parameter] public RenderFragment? EmptyList { get; set; }
+    [Parameter] public RenderFragment? NullList { get; set; }
+
+    [Parameter] public RenderFragment<TItem>? ItemTemplate { get; set; }
+    [Parameter] public List<TItem>? ListOfItems { get; set; }
+}
