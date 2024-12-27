@@ -34,6 +34,12 @@
 
 <IndividualGame Game="oneGameToShow" SwitchGame="ShowNewGame" IsTable="false" DisplayButton="true" />
 
+<div class="row">
+    <div class="col text-center">
+        <button class="btn btn-success" @onclick="AddNewGame"> Add New Game</button>
+    </div>
+</div>
+
 @code
 {
     private string PageTitle = "Home";
@@ -91,5 +97,14 @@
             return new Game() { Name = "No items in array!", ReleaseDate = DateTime.Now };
 
         return tempGame;
+    }
+    void AddNewGame()
+    {
+        games!.Add(new Game()
+        {
+            Name = "CS",
+            Genre = "Shooter",
+            ReleaseDate = new DateTime(1998, 02, 02)
+        });
     }
 }

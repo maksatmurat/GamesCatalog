@@ -1,4 +1,7 @@
 ﻿@rendermode InteractiveServer
+@inject SingletonService singleton
+@inject TransientService transient
+@inject IRepository repository
 
 @page "/deneme"
 
@@ -12,15 +15,24 @@
         </button>
     </div>
     <div class="col-6 text-right">
-        <div style="font-size:50px">@currentCount</div>
+        <div style="font-size:50px">@singleton.Value</div>
     </div>
 </div>
 <div class="row">
     <div class="col text-center">
-        <input type="number" name="number"  @bind="currentCount" class="form-control-lg"  />
+        <input type="number" name="number"  @bind="singleton.Value" class="form-control-lg"  />
     </div>
 </div>
 <GameListTable Name="Deneme Module" Games="games" />
+
+<div class="row mt-3">
+    <div class="col-6 text-center alert alert-primary">
+        Singleton Count: @singleton.Value
+    </div>
+    <div class="col-6 text-center alert alert-danger">
+        Transient Count: @transient.Value
+    </div>
+</div>
 
 @code
 {
@@ -29,25 +41,13 @@
     private int currentCount = 0;
     private void IncrementCount()
     {
+        currentCount = singleton.Value;
         currentCount++;
+        singleton.Value = currentCount;
+        transient.Value = currentCount;
     }
     protected override void OnInitialized()
     {
-        games = new List<Game>()
-    {
-                new Game()
-                {
-                    Name="Test Rally",
-                    Genre="Simulator",
-                    ReleaseDate = new DateTime(2026,05,08)
-                },
-                new Game()
-                {
-                    Name="HalfLife",
-                    Genre="RPG",
-                    ReleaseDate = new DateTime(2025,04,12)
-                }
-            };
-
+        games = repository.GetAllGames();
     }
 }
