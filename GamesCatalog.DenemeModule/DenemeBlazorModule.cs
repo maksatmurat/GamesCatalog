@@ -6,9 +6,9 @@ namespace GamesCatalog.HomeModule;
 public class DenemeBlazorModule : BlazorModule
 {
     public override int OrderIndex => 2;
-    public override string Title => "Deneme";
+    public override string Title => "counter";
 
-    public override string Description => "Deneme Page";
+    public override string Description => "counter Page";
 
-    public override string Route => "/deneme";
+    public override string Route => "/counter";
 }

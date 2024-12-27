@@ -15,11 +15,14 @@
             </tr>
         </thead>
         <tbody>
-                <GenericList ListOfItems="Games" EmptyList="EmptyList1" NullList="NullList1">
-                    <ItemTemplate Context="game">
-                        <IndividualGame Game="game" IsTable="true" DisplayButton="displayButton" DeleteGame="DeleteTheGame" />
-                    </ItemTemplate>
-                </GenericList>
+            <GenericList ListOfItems="Games" EmptyList="EmptyList1" NullList="NullList1">
+                <ItemTemplate Context="game">
+                    <IndividualGame Game="game" IsTable="true" DisplayButton="displayButton" DeleteGame="DeleteTheGame" />
+                </ItemTemplate>
+            </GenericList>
+            <Confirmation @ref="confirmation" onCancel="OnCancel" onConfirm="OnConfirm">
+                <div class="text-danger"> Do you wish to delete @gameToBeDeleted!.Name!.ToLower()</div>
+            </Confirmation>
         </tbody>
     </table>
 </div>
@@ -32,11 +35,24 @@
     bool displayButton = false;
     [Parameter] public string? Name { get; set; }
 
+
+
     void DeleteTheGame(Game game)
     {
-        Games?.Remove(game);
+        gameToBeDeleted = game;
+        confirmation?.showHide();
     }
-
-    //-*---------------------------------------------------
-   
+    Game? gameToBeDeleted;
+    Confirmation? confirmation;
+    void OnConfirm()
+    {
+        Games?.Remove(gameToBeDeleted!);
+        confirmation?.showHide();
+        gameToBeDeleted = null;
+    }
+    void OnCancel()
+    {
+        confirmation?.showHide();
+        gameToBeDeleted = null;
+    }
 }

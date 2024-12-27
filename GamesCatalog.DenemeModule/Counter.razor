@@ -1,0 +1,32 @@
+@page "/counter"
+@rendermode InteractiveServer
+
+
+<div class="my-component">
+    This component is defined in the <strong>GamesCatalog.DenemeModule</strong> library.
+</div>
+<div class="row">
+    <div class="col-6 text-right">
+        <button @onclick="IncrementCount" class="btn btn-primary">
+            Click me!
+        </button>
+    </div>
+    <div class="col-6 text-right">
+        <div style="font-size:50px">@singleton!.Value</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <input type="number" name="number" @bind="@singleton!.Value" class="form-control-lg" />
+    </div>
+</div>
+<GameListTable Name="Deneme Module" Games="games" />
+
+<div class="row mt-3">
+    <div class="col-6 text-center alert alert-primary">
+        Singleton Count: @singleton!.Value
+    </div>
+    <div class="col-6 text-center alert alert-danger">
+        Transient Count: @transient!.Value
+    </div>
+</div>
