@@ -1,5 +1,4 @@
 @rendermode InteractiveServer
-
 @if (!IsTable && Game != null)
 {
 
@@ -9,15 +8,22 @@
             <p>@Game?.Genre</p>
             <p>@Game?.ReleaseDate.ToString("dd.MM.yyyy")</p>
 
-            <div class="row">
-                <div class="col">
-
-                    @if (DisplayButton)
-                    {
-                        <button class="btn btn-danger" @onclick="SwitchGame">Switch</button>
-                    }
+            @if (DisplayButton)
+            {
+                <div class="row mt-4">
+                    <div class="col">
+                        <button class="btn btn-danger" style="color:@AppStyle?.Color" @onclick="SwitchGame">Switch</button>
+                    </div>
                 </div>
-            </div>
+            }
+            @if(Game!.Name!.Equals("Gta VI") && AppStyle?.WitcherWords != null)
+            {
+                <div class="row mt-3">
+                    <div class="col alert alert-light text-center">
+                        @AppStyle.WitcherWords[rnd.Next(0,AppStyle.WitcherWords.Count)]
+                    </div>
+                </div>
+            }
         </div>
     </div>
 }
@@ -47,4 +53,6 @@ else
     [Parameter] public bool DisplayButton { get; set; } = false;
     [Parameter] public EventCallback<Game> DeleteGame { get; set; }
     [Parameter] public EventCallback SwitchGame { get; set; }
+    [Inject][CascadingParameter] public AppStyle? AppStyle { get; set; }
+    Random rnd = new Random(DateTime.Now.Microsecond);
 }

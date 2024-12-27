@@ -1,18 +1,18 @@
 @page "/counter"
 @rendermode InteractiveServer
+@using System.Drawing
 
-
-<div class="my-component">
-    This component is defined in the <strong>GamesCatalog.DenemeModule</strong> library.
+<div class="my-component" >
+    This component is defined in the <strong >GamesCatalog.DenemeModule</strong> library.
 </div>
 <div class="row">
     <div class="col-6 text-right">
-        <button @onclick="IncrementCount" class="btn btn-primary">
-            Click me!
+        <button @onclick="IncrementCount" class="btn btn-primary" >
+            <span style="color:@Styles?.Color;font-size:@Styles?.Size"> Click me!</span>
         </button>
     </div>
     <div class="col-6 text-right">
-        <div style="font-size:50px">@singleton!.Value</div>
+        <div style="font-size:50px"><h1 style="">@currentCount</h1></div>
     </div>
 </div>
 <div class="row">

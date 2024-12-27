@@ -5,10 +5,13 @@ using Microsoft.AspNetCore.Components;
 namespace GamesCatalog.DenemeModule;
 public partial class Counter
 {
-    [Inject] SingletonService singleton { get; set; }
-[Inject] TransientService transient {get;set;}
-[Inject] IRepository? repository {get;set;}
+    [Inject][CascadingParameter] public AppStyle? Styles { get; set; }
+    [Inject] SingletonService? singleton { get; set; }
+    [Inject] TransientService? transient { get; set; }
+    [Inject] IRepository? repository { get; set; }
     List<Game>? games;
+
+
 
     private int currentCount = 0;
     private void IncrementCount()
@@ -16,7 +19,7 @@ public partial class Counter
         currentCount = singleton!.Value;
         currentCount++;
         singleton.Value = currentCount;
-        transient.Value = currentCount;
+        transient!.Value = currentCount;
     }
     protected override void OnInitialized()
     {

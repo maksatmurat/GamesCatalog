@@ -1,5 +1,6 @@
 ﻿using Calabonga.Blazor.AppDefinitions;
 using GamesCatalog.WebApp.Components;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GamesCatalog.WebApp.Definitions;
 public class CommonDefinition : AppDefinition
@@ -8,7 +9,6 @@ public class CommonDefinition : AppDefinition
     {
         builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-
     }
     public override void ConfigureApplication(WebApplication app)
     {

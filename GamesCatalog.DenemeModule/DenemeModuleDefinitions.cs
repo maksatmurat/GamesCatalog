@@ -1,4 +1,5 @@
 ﻿using Calabonga.Blazor.AppDefinitions;
+using GamesCatalog.Core.Models;
 using GamesCatalog.DenemeModule;
 using GamesCatalog.DenemeModule.Repository;
 using Microsoft.AspNetCore.Builder;
@@ -16,5 +17,6 @@ public class DenemeModuleDefinitions :AppDefinition
         builder.Services.AddTransient<TransientService>();
         builder.Services.AddScoped<IBlazorModule, DenemeBlazorModule>();
         builder.Services.AddTransient<IRepository, MockGamesRepository>();
+        builder.Services.AddSingleton<AppStyle>();
     }
 }

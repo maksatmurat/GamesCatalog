@@ -15,11 +15,11 @@
     </div>
 </div>
 
-<GameListTable Games="games" Name="@PageTitle" >
+<GameListTable Games="games" Name="@PageTitle">
     <NullList1>
         <td>
             <span style="text-align:center; color:red;font-weight:bolder">
-                  Element Loading...
+                Element Loading...
             </span>
         </td>
     </NullList1>
@@ -49,11 +49,11 @@
 
 
 
-
     protected async override Task OnInitializedAsync()
     {
+
         games = new List<Game>()
-        {
+    {
             new Game()
             {
                 Name="Farming Simulator 2025",
