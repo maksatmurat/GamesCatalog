@@ -15,6 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\images\paper.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameCatalog.RspGameModule\GameCatalog.RspGameModule.csproj" />
     <ProjectReference Include="..\GamesCatalog.Core\GamesCatalog.Core.csproj" />
     <ProjectReference Include="..\GamesCatalog.DenemeModule\GamesCatalog.DenemeModule.csproj" />
     <ProjectReference Include="..\GamesCatalog.HomeModule\GamesCatalog.HomeModule.csproj" />
