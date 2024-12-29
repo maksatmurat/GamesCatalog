@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" CopyToOutputDirectory="PreserveNewest"  />
+    <Folder Include="wwwroot\images\" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <Target Name="CopyDLLs" AfterTargets="Build">
     <Message Text="Executing Copy Command Task" Importance="High" />

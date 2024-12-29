@@ -10,6 +10,7 @@ public class CommonDefinition : AppDefinition
     {
         builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
     }
     public override void ConfigureApplication(WebApplication app)
     {
@@ -20,13 +21,6 @@ public class CommonDefinition : AppDefinition
             app.UseHsts();
         }
         app.UseStaticFiles();
-
-        //app.UseStaticFiles(new StaticFileOptions
-        //{
-        //    FileProvider = new PhysicalFileProvider(
-        //      Path.Combine(AppContext.BaseDirectory, "C:\\Users\\Maksat\\source\\repos\\GamesCatalog\\GameCatalog.RspGameModule", "wwwroot")),
-        //    RequestPath = "/RspGame"
-        //});
         app.UseHttpsRedirection();
       
         app.UseAntiforgery();

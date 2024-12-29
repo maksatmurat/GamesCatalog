@@ -12,10 +12,11 @@ public class RspGameModuleDeginition : AppDefinition
     public override void ConfigureServices(WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IBlazorModule, RspGameBlazorModule>();
+
     }
+
     public override void ConfigureApplication(WebApplication app1)
     {
-        app1.UseStaticFiles();
         app1.UseStaticFiles();
         app1.UseStaticFiles(new StaticFileOptions
         {
